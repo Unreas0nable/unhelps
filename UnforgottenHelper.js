@@ -59,7 +59,7 @@ bot.on("message", async message => {
 
 //
 bot.on('ready', () => {
-    bot.user.setGame("|recode");
+    bot.user.setGame("| u?help | Incomplete |");
 })
 
 bot.on('message', (msg) => {
@@ -118,41 +118,7 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 //         bot.channels.get('327919432246624277').send("**Keep spamming, I'll probably start joining the chill zone, which I ♥ the most**");
      //}
 /*
-         message.channel.send(`Good Morning!`);
 
-          if (message.content === "Good Evening") {
-         message.channel.send(`Good Evening!`);
-     }
-          if (message.content === "Good Night") {
-         message.channel.send(`Good Night!`);
-     }
-          if (message.content === "good morning") {
-         message.channel.send(`Good Morning!`);
-     }
-          if (message.content === "good evening") {
-         message.channel.send(`Good Evening!`);
-     }
-          if (message.content === "good night") {
-         message.channel.send(`Good Night!`);
-     }
-               if (message.content === "gm") {
-         message.channel.send(`Good Morning!`);
-     }
-          if (message.content === "ge") {
-         message.channel.send(`Good Evening!`);
-     }
-          if (message.content === "gn") {
-         message.channel.send(`Good Night!`);
-     }
-               if (message.content === "GM") {
-         message.channel.send(`Good Morning!`);
-     }
-          if (message.content === "GE") {
-         message.channel.send(`Good Evening!`);
-     }
-          if (message.content === "GN") {
-         message.channel.send(`Good Night!`);
-     }*/
 });
 
 bot.login("MzI5MTM1MDQ0NDAyNzQxMjQ4.DDOCaA.soFNmzEe2PCwqm1N2_EqNtsl43Y");
