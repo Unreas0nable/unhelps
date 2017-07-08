@@ -59,7 +59,7 @@ bot.on("message", async message => {
 
 //
 bot.on('ready', () => {
-    bot.user.setGame("|recode");
+    bot.user.setGame("| u?help | Incomplete");
 })
 
 bot.on('message', (msg) => {
