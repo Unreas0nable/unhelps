@@ -1,1 +1,2 @@
-pm2 start UnforgottenHelper.js
+nodemon UnforgottenHelper.js
+pause

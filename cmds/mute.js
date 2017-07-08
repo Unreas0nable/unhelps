@@ -31,12 +31,6 @@ module.exports.run = async (bot, message, args) => {
             }*/
 
             if(toMute.roles.has(role.id)) return message.channel.sendMessage("This user is already muted!");
-
-            bot.mutes[toMute.id] = {
-                guild: message.guild.id,
-                time: Date.now() + parseInt(args[1]) * 1000,
-                roles: message.guild.roles
-            }
             await toMute.addRole(role)
 
             //let roles = message.guild.roles.find(r => r.name === "Tester");

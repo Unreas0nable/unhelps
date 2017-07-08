@@ -5,7 +5,7 @@ var prefix = "u?"
 
 const fs = require('fs');
 
-const bot = new Discord.Client({disableEveryone: true});
+const bot = new Discord.Client({disableEveryone: true}, {autoReconnect:true});
 bot.commands = new Discord.Collection();
 
 function commandIs(str, msg){
@@ -58,13 +58,17 @@ bot.on("message", async message => {
 });
 
 //
+
+
 bot.on('ready', () => {
     bot.user.setGame("| u?help | Incomplete |");
+    //bot.user.setStatus('online');
+    bot.user.setStatus('idle');
 })
 
-bot.on('message', (msg) => {
+/*bot.on('message', (msg) => {
 console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${msg} - ${bot.guilds.id}`);
-})
+})*/
 
     bot.on('ready', async () => {
         console.log('Bot Username');
@@ -72,7 +76,12 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
         console.log('bot ID');
         console.log([bot.user.id]);
         console.log('Server Name(s)');
-        console.log("I am in" + " - " + [bot.guilds.size] + " - " + "server(s)");
+        console.log("I am in" + " - " + [bot.guilds.size] + " - " + "server(s)\n");
+        console.log('**Bot Stats**\n\n' +
+        `**Users:** ${bot.users.size} \n\n` + 
+        `**Servers:** ${bot.guilds.size} \n\n` +
+        `**Channels:** ${bot.channels.size} \n\n` 
+        );
         await console.log('The bot is online!');
     })
 
@@ -117,7 +126,6 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 //         bot.channels.get('327919432246624277').send("**Pls ;c People loves me**");
 //         bot.channels.get('327919432246624277').send("**Keep spamming, I'll probably start joining the chill zone, which I ♥ the most**");
      //}
-/*
 
 });
 

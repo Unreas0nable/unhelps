@@ -11,6 +11,8 @@ module.exports.run = async (bot, message, args) => {
             "u?fortune `insert a sentence or a few words`")
             .addField("icon",
             "shows your profile picture")
+            .addField("invite",
+            "will DM you the invite to Unreas0nable Test Server")
             .addField("mute",
             "only permitted to Admin roles to mute a user **working on removing their current roles**")
             .addField("ping",
@@ -34,7 +36,8 @@ module.exports.run = async (bot, message, args) => {
             .addField("End of Help Panel",
             "There will be more commands, just not worked on yet.");
 
-        message.channel.send({embed: embed});
+        message.author.send({embed: embed});
+        message.reply("Please check your DM!");
 
 }
 

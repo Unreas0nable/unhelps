@@ -8,6 +8,7 @@ module.exports.run = async (bot, message, args) => {
         if(toBan.highestRole. position >= message.member.highestRole.position) return message.channel.sendMessage("You cannot ban a member who is higher or has the same role as you.");
 
         message.guild.member(message.mentions.users.first()).ban();
+        message.delete();
         message.channel.send("**" + args.join(" ").substring(0) +  " got banned**");
 }
 
