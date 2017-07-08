@@ -11,10 +11,10 @@ module.exports.run = async (bot, message, args) => {
         if(toMute.highestRole.position >= message.member.highestRole.position) return message.channel.sendMessage("You cannot mute a member who is higher or has the same role as you.");
 
         let role = message.guild.roles.find(r => r.name === "Muted");
-        /*if(!role) {
+        if(!role) {
                 try {
                     role = await message.guild.createRole({
-                        name: "甦 Taka - Muted",
+                        name: "Muted",
                         color: "#ffffff",
                         permissions: []
                     });
@@ -28,10 +28,12 @@ module.exports.run = async (bot, message, args) => {
                 } catch(e) {
                     console.log(e.stack);
                 }
-            }*/
+            }
 
             if(toMute.roles.has(role.id)) return message.channel.sendMessage("This user is already muted!");
             await toMute.addRole(role)
+            await message.delete()
+            await message.reply("he/she has been muted, successfully.");
 
             //let roles = message.guild.roles.find(r => r.name === "Tester");
             //await toMute.removeRole(roles);
