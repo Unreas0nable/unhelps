@@ -89,6 +89,10 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
         //bot.channels.get('284006673503354881').send("Currently being recoded.");
 //        bot.channels.get('327614673799217152').send("Currently being recoded.");
 
+bot.on('message', (msg) => {
+if (msg.author.bot) return;
+bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | Server Name: ${msg.guild.name} | ${new Date()} | **${msg}**`);
+})
     })
     bot.on('message', message => {
         var args = message.content.split(/[ ]+/);
