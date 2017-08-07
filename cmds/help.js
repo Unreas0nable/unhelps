@@ -25,7 +25,7 @@ module.exports.run = async (bot, message, args) => {
             "shows how many users, channels, and servers the bot is connected to..")
             .addField("test",
             "**Beep Boop** `Try it out`")
-            .addField("u?",
+            .addField("$",
             "will send you a message or an error in the server.")
             .addField("UnforgottenBot",
             "try it out!")
