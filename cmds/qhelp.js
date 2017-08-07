@@ -3,7 +3,7 @@
 module.exports.run = async (bot, message, args) => {
         let embed = new Discord.RichEmbed()
         .setTitle("Help Panel")
-        .setDescription("Use u? to execute a command shown below")
+        .setDescription("Use $ to execute a command shown below")
         .setColor("#DB3498")
         .addField("capri",
 	    "---------")
