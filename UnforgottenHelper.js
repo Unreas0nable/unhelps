@@ -122,9 +122,9 @@ bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message 
      message.channel.send(`Click the reaction button to vote!`);
      message.react("👍")
     }*/
-       /*if(message.content === "┬─┬ ノ( ゜-゜ノ)") {
-	message.channel.send("(╯°□°）╯︵ ┻━┻");
-     }*/
+       if(message.content === "<@329135044402741248>") {
+	message.author.send(`Type $help to execute the help menu.. <@${msg.author.id}>`);
+     }
      //if (message.content === "(╯°□°）╯︵ ┻━┻"){
         //message.channel.send("┬─┬ ノ( ゜-゜ノ) **Not hating though.. ;c**");
 //         bot.channels.get('327919432246624277').send("**Pls ;c People loves me**");
