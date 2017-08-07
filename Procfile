@@ -1,1 +1,2 @@
-worker: node UnforgottenHelper.js
+worker: node SakiBot.js
+worker: nodemon SakiBot.js

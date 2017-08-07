@@ -3,12 +3,12 @@ const Discord = module.require("discord.js");
 module.exports.run = async (bot, message, args) => {
         let embed = new Discord.RichEmbed()
             .setTitle("Help Panel")
-            .setDescription("Use u? to execute a command shown below")
+            .setDescription("Use $ to execute a command shown below")
             .setColor("#DB3498")
             //.addField("ban",
             //"only permitted to Admin roles to ban user")
             .addField("fortune",
-            "u?fortune `insert a sentence or a few words`")
+            "$fortune `insert a sentence or a few words`")
             .addField("icon",
             "shows your profile picture")
             .addField("invite",
@@ -25,10 +25,10 @@ module.exports.run = async (bot, message, args) => {
             "shows how many users, channels, and servers the bot is connected to..")
             .addField("test",
             "**Beep Boop** `Try it out`")
-            .addField("u?",
+            .addField("$",
             "will send you a message or an error in the server.")
-            .addField("UnforgottenBot",
-            "try it out!")
+            //.addField("UnforgottenBot",
+            //"try it out!")
             .addField("unmute",
             "only permitted to Admin roles to unmute a user")
             .addField("userinfo",

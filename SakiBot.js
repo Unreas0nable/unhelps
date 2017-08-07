@@ -1,7 +1,7 @@
 ﻿//const botSettings = require("./botsettings.json");
 const Discord = require('discord.js');
 
-var prefix = "u?"
+var prefix = "$"
 
 const fs = require('fs');
 
@@ -44,7 +44,7 @@ fs.readdir("./cmds/", (err, files) => {
 
 bot.on("message", async message => {
     if(message.author.bot) return;
-    if(message.channel.type === "dm") return;
+    //if(message.channel.type === "dm") return;
 
     let messageArray = message.content.split(" ");
     let command = messageArray[0];
@@ -61,15 +61,31 @@ bot.on("message", async message => {
 
 
 bot.on('ready', () => {
-    bot.user.setGame("| u?help | Incomplete |");
+    bot.user.setGame("| $help | Maintainence Mode |");
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
+    //bot.user.setAvatar('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg');
+    //bot.user.setUsername('Saki Bot');
 })
 
 /*bot.on('message', (msg) => {
 console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${msg} - ${bot.guilds.id}`);
 })*/
 
+bot.on('message', msg => {
+    if (msg.isMentioned(bot.user.id)){
+	    msg.author.send(
+        "```\n" +
+        `The prefix is **$**\n` +
+    	`From now on, this will be like a changelog sort of stuff..\n` +
+        `$saruze2 is a new quote command..\n` +
+        `$help is for a normal help menu..\n` +
+        `$qhelp is for a quote help menu..\n` +
+        `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
+        `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
+        "\n```")
+        }
+    });
     bot.on('ready', async () => {
         console.log('Bot Username');
         console.log([bot.user.username]);
@@ -89,6 +105,12 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
         //bot.channels.get('284006673503354881').send("Currently being recoded.");
 //        bot.channels.get('327614673799217152').send("Currently being recoded.");
 
+bot.on('message', (msg) => {
+if (msg.author.bot) return;
+//if(msg.channel.type === "dm") return;
+//bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | Server Name: ${msg.guild.name} | ${new Date()} | **${msg}**`);
+bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | ${new Date()} | **${msg}**`);
+})
     })
     bot.on('message', message => {
         var args = message.content.split(/[ ]+/);
@@ -118,9 +140,9 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
      message.channel.send(`Click the reaction button to vote!`);
      message.react("👍")
     }*/
-       /*if(message.content === "┬─┬ ノ( ゜-゜ノ)") {
-	message.channel.send("(╯°□°）╯︵ ┻━┻");
-     }*/
+       //if(message.content === "@UnforgottenBot |Helper") {
+	//message.author.send(`Type $help to execute the help menu.. <@${msg.author.id}>`);
+     //}
      //if (message.content === "(╯°□°）╯︵ ┻━┻"){
         //message.channel.send("┬─┬ ノ( ゜-゜ノ) **Not hating though.. ;c**");
 //         bot.channels.get('327919432246624277').send("**Pls ;c People loves me**");
