@@ -70,6 +70,12 @@ bot.on('ready', () => {
 console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${msg} - ${bot.guilds.id}`);
 })*/
 
+bot.on('message', msg => {
+    if (msg.isMentioned(bot.user.id)){
+	    message.author.send('The prefix is **$**');
+    	}
+    });
+
     bot.on('ready', async () => {
         console.log('Bot Username');
         console.log([bot.user.username]);
@@ -122,9 +128,9 @@ bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message 
      message.channel.send(`Click the reaction button to vote!`);
      message.react("👍")
     }*/
-       if(message.content === "@UnforgottenBot |Helper") {
-	message.author.send(`Type $help to execute the help menu.. <@${msg.author.id}>`);
-     }
+       //if(message.content === "@UnforgottenBot |Helper") {
+	//message.author.send(`Type $help to execute the help menu.. <@${msg.author.id}>`);
+     //}
      //if (message.content === "(╯°□°）╯︵ ┻━┻"){
         //message.channel.send("┬─┬ ノ( ゜-゜ノ) **Not hating though.. ;c**");
 //         bot.channels.get('327919432246624277').send("**Pls ;c People loves me**");
