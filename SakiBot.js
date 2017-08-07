@@ -61,11 +61,7 @@ bot.on("message", async message => {
 
 
 bot.on('ready', () => {
-<<<<<<< HEAD:SakiBot.js
     bot.user.setGame("| $help | Maintainence Mode |");
-=======
-    bot.user.setGame("| u?help | Maintainence Mode |");
->>>>>>> 0e8e90140e242366e50118b8d6e6488d5c52ccb0:UnforgottenHelper.js
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
     //bot.user.setAvatar('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg');
@@ -78,7 +74,6 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 
 bot.on('message', msg => {
     if (msg.isMentioned(bot.user.id)){
-<<<<<<< HEAD:SakiBot.js
 	    msg.author.send(
         "```\n" +
         `The prefix is **$**\n` +
@@ -91,12 +86,6 @@ bot.on('message', msg => {
         "\n```")
         }
     });
-=======
-	    message.author.send('The prefix is **$**');
-    	}
-    });
-
->>>>>>> 0e8e90140e242366e50118b8d6e6488d5c52ccb0:UnforgottenHelper.js
     bot.on('ready', async () => {
         console.log('Bot Username');
         console.log([bot.user.username]);
@@ -118,13 +107,9 @@ bot.on('message', msg => {
 
 bot.on('message', (msg) => {
 if (msg.author.bot) return;
-<<<<<<< HEAD:SakiBot.js
 //if(msg.channel.type === "dm") return;
 //bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | Server Name: ${msg.guild.name} | ${new Date()} | **${msg}**`);
 bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | ${new Date()} | **${msg}**`);
-=======
-bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | Server Name: ${msg.guild.name} | ${new Date()} | **${msg}**`);
->>>>>>> 0e8e90140e242366e50118b8d6e6488d5c52ccb0:UnforgottenHelper.js
 })
     })
     bot.on('message', message => {
