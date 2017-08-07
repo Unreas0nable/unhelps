@@ -1,7 +1,7 @@
 ﻿//const botSettings = require("./botsettings.json");
 const Discord = require('discord.js');
 
-var prefix = "u?"
+var prefix = "$"
 
 const fs = require('fs');
 
@@ -61,7 +61,7 @@ bot.on("message", async message => {
 
 
 bot.on('ready', () => {
-    bot.user.setGame("| u?help | Updated |");
+    bot.user.setGame("| u?help | Maintainence Mode |");
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
 })
