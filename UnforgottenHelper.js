@@ -61,7 +61,7 @@ bot.on("message", async message => {
 
 
 bot.on('ready', () => {
-    bot.user.setGame("| u?help | Incomplete |");
+    bot.user.setGame("| u?help | Updated |");
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
 })
