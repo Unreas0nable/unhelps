@@ -61,7 +61,8 @@ bot.on("message", async message => {
 
 
 bot.on('ready', () => {
-    bot.user.setGame("| $help | Maintainence Mode |");
+    //bot.user.setGame("| $help | Maintainence Mode |");
+    bot.user.setGame('$help - 24/7 Testing');
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
     //bot.user.setAvatar('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg');
