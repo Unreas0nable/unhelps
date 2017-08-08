@@ -7,6 +7,8 @@ module.exports.run = async (bot, message, args) => {
             .setColor("#DB3498")
             //.addField("ban",
             //"only permitted to Admin roles to ban user")
+            .addField("eval",
+            "used as a calculator")
             .addField("fortune",
             "$fortune `insert a sentence or a few words`")
             .addField("icon",
