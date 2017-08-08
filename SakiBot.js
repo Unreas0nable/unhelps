@@ -80,7 +80,7 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 })*/
 
 bot.on('message', msg => {
-    if (msg.content === "<@" + bot.user.id + ">"){
+    if (msg.content === "<@" + bot.user.id + ">") | (msg.content === "$changelogs") {
 	    msg.author.send(
         "```\n" +
         `The prefix is **$**\n` +
@@ -92,7 +92,8 @@ bot.on('message', msg => {
         `######################################\n` +
         `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
         `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
-	`Eval aka Calculator will be added..` +
+	`######################################\n` +
+	`Nothing else to read here, yet... :) \n` +
         "\n```")
         }
     });
@@ -113,7 +114,7 @@ bot.on('message', msg => {
 
     bot.on("message", message => {
   var args = message.content.split(" ").slice(1);
-
+  var bcg = bot.channels.get('284006673503354881').send(args);
   if (message.content.startsWith(prefix + "eval")) {
     //if(message.author.id !== '343434732144427011') return;
     try {
