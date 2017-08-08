@@ -80,7 +80,7 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 })*/
 
 bot.on('message', msg => {
-    if (msg.content === "<@" + bot.user.id + ">") || (msg.content === "$changelogs") {
+    if (msg.content === "<@" + bot.user.id + ">") | === "$changelogs" {
 	    msg.author.send(
         "```\n" +
         `The prefix is **$**\n` +
