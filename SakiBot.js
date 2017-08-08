@@ -80,7 +80,25 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 })*/
 
 bot.on('message', msg => {
-    if (msg.content === "<@" + bot.user.id + ">") | === "$changelogs" {
+    if (msg.content === "<@" + bot.user.id + ">"){
+	    msg.author.send(
+        "```\n" +
+        `The prefix is **$**\n` +
+    	`From now on, this will be like a update logs stuff, I will be making a different kind of message to make it better in a couple updates.\n` +
+        `######################################\n` +
+        `Recently added commands - [ saruze2 ] , [ eval ]..\n` +
+        `$help is for a normal help menu..\n` +
+        `$qhelp is for a quote help menu..\n` +
+        `######################################\n` +
+        `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
+        `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
+	`######################################\n` +
+	`Nothing else to read here, yet... :) \n` +
+        "\n```")
+        }
+    });
+bot.on('message', msg => {
+    if (msg.content === "$changelogs"){
 	    msg.author.send(
         "```\n" +
         `The prefix is **$**\n` +
