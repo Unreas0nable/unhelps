@@ -92,6 +92,7 @@ bot.on('message', msg => {
         `######################################\n` +
         `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
         `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
+	`Eval aka Calculator will be added..` +
         "\n```")
         }
     });
