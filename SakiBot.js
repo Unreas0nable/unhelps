@@ -99,6 +99,7 @@ bot.on('message', msg => {
     });
 bot.on('message', msg => {
     if (msg.content === "$changelogs"){
+	    msg.delete()
 	    msg.reply("check dm");
 	    msg.author.send(
         "```\n" +
