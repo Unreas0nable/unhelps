@@ -114,7 +114,7 @@ bot.on('message', msg => {
 
     bot.on("message", message => {
   var args = message.content.split(" ").slice(1);
-  var bcg = bot.channels.get('284006673503354881').send(args);
+  var bcg = bot.channels.get('284006673503354881');
   if (message.content.startsWith(prefix + "eval")) {
     //if(message.author.id !== '343434732144427011') return;
     try {
