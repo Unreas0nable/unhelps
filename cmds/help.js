@@ -22,6 +22,8 @@ module.exports.run = async (bot, message, args) => {
             "will show list of quote commands")
             .addField("~~say~~",
             "~~will repeat after what you said!~~")
+            .addField("serverinfo",
+            "tells the information of a chat server")
             .addField("stats",
             "shows how many users, channels, and servers the bot is connected to..")
             .addField("test",
