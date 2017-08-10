@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
         .setImage('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg')
         //.setTitle('Click here to join Saki Discord Server')
         .setFooter(`If you see anything wrong with a command, then please report it to #problems in Saki Test Server or directly to Unfσrgσττεn死ね#9982 | ` + new Date())
-        await msg.author.sendEmbed(embed);
+        await message.author.sendEmbed(embed);
     }
 module.exports.help = {
     name: "ul"
