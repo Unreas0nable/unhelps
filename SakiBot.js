@@ -108,11 +108,7 @@ removeCooldown(message.author.id, 5);
 
 
 bot.on('ready', () => {
-<<<<<<< HEAD
     bot.user.setGame("$help | v1.2");
-=======
-    bot.user.setGame("$help | 24/7 testing");
->>>>>>> 98c086f1edd858be9d5a06fd363a558416a7b477
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
     //bot.user.setAvatar('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg');
@@ -125,7 +121,6 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 
 bot.on('message', msg => {
     if (msg.content === "<@" + bot.user.id + ">"){
-<<<<<<< HEAD
         let embed = new Discord.RichEmbed()
         //.setThumbnail(bot.user.avatarURL)
         //.setThumbnail('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg',)
@@ -145,44 +140,6 @@ bot.on('message', msg => {
         msg.author.sendEmbed(embed);
     }
 });
-=======
-	    msg.author.send(
-        "```\n" +
-        `The prefix is **$**\n` +
-    	`From now on, this will be like a update logs stuff, I will be making a different kind of message to make it better in a couple updates.\n` +
-        `######################################\n` +
-        `Recently added commands - [ saruze2 ] , [ eval ]..\n` +
-        `$help is for a normal help menu..\n` +
-        `$qhelp is for a quote help menu..\n` +
-        `######################################\n` +
-        `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
-        `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
-	`######################################\n` +
-	`Nothing else to read here, yet... :) \n` +
-        "\n```")
-        }
-    });
-bot.on('message', msg => {
-    if (msg.content === "$changelogs"){
-	    msg.delete()
-	    msg.reply("check dm");
-	    msg.author.send(
-        "```\n" +
-        `The prefix is **$**\n` +
-    	`From now on, this will be like a update logs stuff, I will be making a different kind of message to make it better in a couple updates.\n` +
-        `######################################\n` +
-        `Recently added commands - [ saruze2 ] , [ eval ]..\n` +
-        `$help is for a normal help menu..\n` +
-        `$qhelp is for a quote help menu..\n` +
-        `######################################\n` +
-        `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
-        `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
-	`######################################\n` +
-	`Nothing else to read here, yet... :) \n` +
-        "\n```")
-        }
-    });
->>>>>>> 98c086f1edd858be9d5a06fd363a558416a7b477
     bot.on('ready', async () => {
         console.log('Bot Username');
         console.log([bot.user.username]);
@@ -201,11 +158,7 @@ bot.on('message', msg => {
     bot.on("message", message => {
   var args = message.content.split(" ").slice(1);
   var bcg = bot.channels.get('284006673503354881');
-<<<<<<< HEAD
   if (message.content.startsWith("calc")) {
-=======
-  if (message.content.startsWith(prefix + "eval")) {
->>>>>>> 98c086f1edd858be9d5a06fd363a558416a7b477
     //if(message.author.id !== '343434732144427011') return;
     try {
       const code = args.join(" ");
