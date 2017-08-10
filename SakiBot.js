@@ -1,4 +1,4 @@
-﻿//const botSettings = require("./botsettings.json");
+//const botSettings = require("./botsettings.json");
 const Discord = require('discord.js');
 
 var prefix = "$"
@@ -9,8 +9,40 @@ const bot = new Discord.Client({disableEveryone: true}, {autoReconnect:true});
 bot.commands = new Discord.Collection();
 
 function commandIs(str, msg){
-    return msg.content.toLowerCase().startsWith("u?" + str);
+    return msg.content.toLowerCase().startsWith("$" + str);
 }
+
+var cooldownUsers = [];
+
+// Cooldown Check Function
+const checkCooldown = ((userId) => {
+  if(cooldownUsers.indexOf(userId) > -1) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+// Cooldown Removal Function
+const removeCooldown = ((userId, timeInSeconds) => {
+  let index = cooldownUsers.indexOf(userId);
+  if(index > -1) { 
+    setTimeout(() => {
+    cooldownUsers = cooldownUsers.splice(index, 0);
+    }, timeInSeconds * 1000)
+  }
+});
+
+// const antispam = require("discord-anti-spam");
+// antispam(bot, {
+//   warnBuffer: 3, //Maximum amount of messages allowed to send in the interval time before getting warned. 
+//   maxBuffer: 5, // Maximum amount of messages allowed to send in the interval time before getting banned. 
+//   interval: 1000, // Amount of time in ms users can send a maximum of the maxBuffer variable before getting banned. 
+//   warningMessage: "stop spamming or I'll whack your head off.", // Warning message send to the user indicating they are going to fast. 
+//   banMessage: "has been banned for spamming, anyone else?", // Ban message, always tags the banned user in front of it. 
+//   maxDuplicatesWarning: 7, // Maximum amount of duplicate messages a user can send in a timespan before getting warned 
+//   maxDuplicatesBan: 10 // Maximum amount of duplicate messages a user can send in a timespan before getting banned 
+// });
 
 function pluck(array) {
     return array.map(function(item) { return item["name"]; });
@@ -58,9 +90,17 @@ bot.on("message", async message => {
     let args = messageArray.slice(1);
 
     if(!command.startsWith(prefix)) return;
-
+    
     let cmd = bot.commands.get(command.slice(prefix.length));
+if(checkCooldown(message.author.id)) {
+message.channel.send("Please wait 5 seconds to use another commands!");
+return;
+    }
+cooldownUsers.push(message.author.id);
+// remove cooldown after 5 seconds
+removeCooldown(message.author.id, 5);
     if(cmd) cmd.run(bot, message, args);
+    
 
 });
 
@@ -68,7 +108,7 @@ bot.on("message", async message => {
 
 
 bot.on('ready', () => {
-    bot.user.setGame("$help | Updated");
+    bot.user.setGame("$help | v1.2");
     //bot.user.setStatus('online');
     bot.user.setStatus('idle');
     //bot.user.setAvatar('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg');
@@ -81,21 +121,25 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 
 bot.on('message', msg => {
     if (msg.content === "<@" + bot.user.id + ">"){
-	    msg.author.send(
-        "```\n" +
-        `The prefix is **$**\n` +
-    	`From now on, this will be like a update logs stuff, I will be making a different kind of message to make it better in a couple updates.\n` +
-        `######################################\n` +
-        `Recently added commands - [ saruze2 ] , [ eval ]..\n` +
-        `$help is for a normal help menu..\n` +
-        `$qhelp is for a quote help menu..\n` +
-        `######################################\n` +
-        `Saki Bot is still work in progress.. if you are a tester or just wants to become a tester, type $invite\n` +
-        `If there's any bugs or glitch, contact Unfσrgσττεn死ね#9982 **- the owner of Saki Bot**\n` +
-	`Eval aka Calculator will be added..` +
-        "\n```")
-        }
-    });
+        let embed = new Discord.RichEmbed()
+        //.setThumbnail(bot.user.avatarURL)
+        //.setThumbnail('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg',)
+        .setTitle('Update logs')
+        .setDescription('**Saki is currently v1.2;\n' +
+        'The prefix is $;\n' +
+        `Added commands - [ saruze2 ] , [ eval ] , [ uptime ] , [ guildinfo ];\n` +
+        `Updated commands - [ userinfo ] , [ help ] , [ fortune ]; \n` +
+        `Embeds color changes - [ grey ]\n` +
+        `$help is a normal help menu;\n` +
+        `$qhelp is a quote help menu;\n` +
+        `Saki is still work in progress, if you want to become a tester -** click to join __**[Saki Test Server](https://discord.gg/r7vEU6H)**__\n`)
+        .addBlankField()
+        .setImage('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg')
+        //.setTitle('Click here to join Saki Discord Server')
+        .setFooter(`If you see anything wrong with a command, then please report it to #problems in Saki Test Server or directly to Unfσrgσττεn死ね#9982 | ` + new Date())
+        msg.author.sendEmbed(embed);
+    }
+});
     bot.on('ready', async () => {
         console.log('Bot Username');
         console.log([bot.user.username]);
@@ -113,8 +157,8 @@ bot.on('message', msg => {
 
     bot.on("message", message => {
   var args = message.content.split(" ").slice(1);
-
-  if (message.content.startsWith(prefix + "eval")) {
+  var bcg = bot.channels.get('284006673503354881');
+  if (message.content.startsWith("calc")) {
     //if(message.author.id !== '343434732144427011') return;
     try {
       const code = args.join(" ");
@@ -124,60 +168,26 @@ bot.on('message', msg => {
         evaled = require("util").inspect(evaled);
       message.channel.send(clean(evaled), {code:"xl"});
     } catch (err) {
-      bot.channels.get('327934828467060740').send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+      //bot.channels.get('327934828467060740').send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
       //message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
     }
   }
 });
 
-      bot.on('ready', (message) => {
-        //bot.channels.get('284006673503354881').send("Currently being recoded.");
-//        bot.channels.get('327614673799217152').send("Currently being recoded.");
+    bot.on("message", message => {
+        if (message.content === "sinvite") {
+            if (message.author.id !== '84719369069805568') return message.channel.send(message.author + ' does not have permission to use this command');
+        message.author.send('https://discordapp.com/oauth2/authorize?client_id=329135044402741248&scope=bot&permissions=8');
+        }
+    });
+
 
 bot.on('message', (msg) => {
 if (msg.author.bot) return;
 //if(msg.channel.type === "dm") return;
 //bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | Server Name: ${msg.guild.name} | ${new Date()} | **${msg}**`);
-bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | ${new Date()} | **${msg}**`);
-})
+//bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | ${new Date()} | **${msg}**`);
     })
-    bot.on('message', message => {
-        var args = message.content.split(/[ ]+/);
 
-/*        if(commandIs("delete", message)){
-        if(hasRole(message.member, "Moderator") || hasRole(message.member, "Co-owner") || hasRole(message.member, "Owner")){
-            if(args.length >= 3){
-//                console.log(message.author.username + args);
-                message.channel.sendMessage('You did not define a argument. Usage: `uj!delete (number of messages to delete)`');
-            } else {
-                var msg;
-                if(args.length === 1){
-                    msg=2;
-                } else {
-//                console.log(message.author.username + args);
-                    msg=parseInt(args[1]) + 1;
-                }
-                message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
-//                client.channels.get('328225959117455362').sendMessage(`${msg.author.username} - #${msg.channel.name} - ${msg}`);
-            }
-        } else {
-            message.channel.sendMessage('You are not an `Admin`.');
-        }
-    }
- */   
-    /*if(commandIs("vote", message)){
-     message.channel.send(`Click the reaction button to vote!`);
-     message.react("👍")
-    }*/
-       //if(message.content === "@UnforgottenBot |Helper") {
-	//message.author.send(`Type $help to execute the help menu.. <@${msg.author.id}>`);
-     //}
-     //if (message.content === "(╯°□°）╯︵ ┻━┻"){
-        //message.channel.send("┬─┬ ノ( ゜-゜ノ) **Not hating though.. ;c**");
-//         bot.channels.get('327919432246624277').send("**Pls ;c People loves me**");
-//         bot.channels.get('327919432246624277').send("**Keep spamming, I'll probably start joining the chill zone, which I ♥ the most**");
-     //}
-
-});
-
+//bot.login("MzQ0MTY4MTI0NDA2NTYyODI3.DGozgQ.eljQyIde7LqeYCopLz44v0g1vcw");
 bot.login("MzI5MTM1MDQ0NDAyNzQxMjQ4.DDOCaA.soFNmzEe2PCwqm1N2_EqNtsl43Y");
