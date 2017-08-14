@@ -334,5 +334,10 @@ removeCooldown2(message.author.id, 60);
   });
 });
 
+<<<<<<< HEAD
 //bot.login(t2);
 bot.login(t1);
+=======
+//bot.login("token");
+bot.login("token");
+>>>>>>> 476946f3ada1df262799e37ed9e7f953fc49ff4d
