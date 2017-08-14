@@ -1,3 +1,3 @@
-nodemon SakiBot.js
+nodemon SakiBot.js --ignore /json/points.json
 
 pause

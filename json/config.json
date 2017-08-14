@@ -1,0 +1,28 @@
+{
+    "token1": "MzI5MTM1MDQ0NDAyNzQxMjQ4.DDOCaA.soFNmzEe2PCwqm1N2_EqNtsl43Y",
+    "token2": "MzQ0MTY4MTI0NDA2NTYyODI3.DGozgQ.eljQyIde7LqeYCopLz44v0g1vcw",
+    "prefix": "$",
+    "spel": "$help | v1.3",
+    "naam": "Saki",
+    "staat": "idle",
+  "admins": {
+    "343434732144427011": "DeParijs",
+    "84719369069805568": "Unfσrgσττεn死ね"
+  },
+    "welcome": {
+      "enabled": true,
+      "message": "Welcome {user} to {server}",
+      "add_role": {
+        "enabled": true,
+        "role": "UNVERIFIED"
+      }
+    },
+    "goodbye": {
+      "enabled": true,
+      "message": "{user} has left {server}",
+      "remove_role": {
+        "enabled": false,
+        "role": "default"
+      }
+    }
+}

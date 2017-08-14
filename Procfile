@@ -1,1 +1,1 @@
-worker: node SakiBot.js
+worker: node SakiBot.js --ignore ./json/points.json

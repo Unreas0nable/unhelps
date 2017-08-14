@@ -2,10 +2,11 @@ const Discord = require('discord.js');
 module.exports.run = async (bot, message, args) => {
     let embed = new Discord.RichEmbed()
     .setTitle('Server Information')
-    .setDescription(`**Server Owner: <@` + message.guild.owner.id + ">\n" +
-    message.guild.channels.size + " channels\n" +
-    message.guild.memberCount + " users in this server\n" +
-    message.guild.roles.size + " roles\n")
+    .setDescription(`**Server Owner**: ` + message.guild.owner.user + "\n" +
+    "**" + message.guild.channels.size + "**" + " channels\n" +
+    "**" + message.guild.memberCount + "**" + " users in this server\n" +
+    "<#" + message.guild.defaultChannel.id + ">" + " default channel\n" +
+    "**" + message.guild.roles.size + "**" + " roles\n")
     .setImage(message.guild.avatarURL)
     .setColor("#000000")
     message.channel.sendEmbed(embed);

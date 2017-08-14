@@ -1,7 +1,9 @@
 //const botSettings = require("./botsettings.json");
 const Discord = require('discord.js');
 
-var prefix = "$"
+var config = require('./json/config.json');
+var t1 = (config.token1);
+var t2 = (config.token2);
 
 const fs = require('fs');
 
@@ -10,6 +12,15 @@ bot.commands = new Discord.Collection();
 
 function commandIs(str, msg){
     return msg.content.toLowerCase().startsWith("$" + str);
+}
+
+function checkAdmin(author, config) {
+  for (var admin in config.admins) {
+    if (author.id == admin) {
+      return true;
+    }
+  }
+  return false;
 }
 
 var cooldownUsers = [];
@@ -32,6 +43,47 @@ const removeCooldown = ((userId, timeInSeconds) => {
     }, timeInSeconds * 1000)
   }
 });
+var cooldownUsers2 = [];
+
+// Cooldown Check Function
+const checkCooldown2 = ((userId) => {
+  if(cooldownUsers.indexOf(userId) > -1) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+// Cooldown Removal Function
+const removeCooldown2 = ((userId, timeInSeconds) => {
+  let index = cooldownUsers.indexOf(userId);
+  if(index > -1) { 
+    setTimeout(() => {
+    cooldownUsers = cooldownUsers.splice(index, 0);
+    }, timeInSeconds * 1000)
+  }
+});
+var cooldownUsers3 = [];
+
+// Cooldown Check Function
+const checkCooldown3 = ((userId) => {
+  if(cooldownUsers.indexOf(userId) > -1) {
+    return true;
+  } else {
+    return false;
+  }
+});
+
+// Cooldown Removal Function
+const removeCooldown3 = ((userId, timeInSeconds) => {
+  let index = cooldownUsers.indexOf(userId);
+  if(index > -1) { 
+    setTimeout(() => {
+    cooldownUsers = cooldownUsers.splice(index, 0);
+    }, timeInSeconds * 1000)
+  }
+});
+
 
 // const antispam = require("discord-anti-spam");
 // antispam(bot, {
@@ -89,11 +141,11 @@ bot.on("message", async message => {
     let command = messageArray[0];
     let args = messageArray.slice(1);
 
-    if(!command.startsWith(prefix)) return;
+    if(!command.startsWith(config.prefix)) return;
     
-    let cmd = bot.commands.get(command.slice(prefix.length));
+    let cmd = bot.commands.get(command.slice(config.prefix.length));
 if(checkCooldown(message.author.id)) {
-message.channel.send("Please wait 5 seconds to use another commands!");
+message.channel.send("Please wait for 5 seconds to use another commands!").then(message => message.delete(5000));
 return;
     }
 cooldownUsers.push(message.author.id);
@@ -108,12 +160,11 @@ removeCooldown(message.author.id, 5);
 
 
 bot.on('ready', () => {
-    bot.user.setGame("$help | v1.21");
-    //bot.user.setStatus('online');
-    bot.user.setStatus('idle');
+    bot.user.setGame(config.spel); // spel = game
+    bot.user.setUsername(config.naam); // naam = name
     //bot.user.setAvatar('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg');
-    //bot.user.setUsername('Saki Bot');
-})
+    bot.user.setStatus(config.staat); // staat = status
+});
 
 /*bot.on('message', (msg) => {
 console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${msg} - ${bot.guilds.id}`);
@@ -121,24 +172,34 @@ console.log(`${msg.author.username} sent a message in #${msg.channel.name} - ${m
 
 bot.on('message', msg => {
     if (msg.content === "<@" + bot.user.id + ">"){
+        msg.delete();
+    setTimeout(function() {
+        msg.reply('update log is being delivered to your dm!')
+    }, 2000);
         let embed = new Discord.RichEmbed()
         //.setThumbnail(bot.user.avatarURL)
         //.setThumbnail('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg',)
         .setTitle('Update logs')
-        .setDescription('**Saki is currently v1.21;\n' +
+        .setDescription('**Saki is currently v1.3;\n' +
         'The prefix is $;\n' +
         `Added commands - [ saruze2 ] , [ eval ] , [ uptime ] , [ serverinfo ] , [ ul ];\n` +
-        `Updated commands - [ userinfo ] , [ help ] , [ fortune ]; \n` +
-        `Fixed commands - [ ul ]\n ` +
-        `Embeds color changes - [ grey ]\n` +
+        `Added commands(only for Bot Admins) - [ whoisbanned ];\n` +
+        `Updated commands - [ userinfo ] , [ help ] , [ fortune ];\n` +
+        `Fixed commands - [ ul ];\n` +
+        `Embeds color changes - [ grey ];\n` +
         `$help is a normal help menu;\n` +
         `$qhelp is a quote help menu;\n` +
-        `Saki is still work in progress, if you want to become a tester -** click to join __**[Saki Test Server](https://discord.gg/2tFxcdd)**__\n`)
+        `Saki is still being coded.. 25% complete or 50% complete;\n`)
         .addBlankField()
         .setImage('https://i3.radionomy.com/radios/400/d8cb20b7-082a-4dc5-b740-7d3ef0f5db39.jpg')
-        //.setTitle('Click here to join Saki Discord Server')
         .setFooter(`If you see anything wrong with a command, then please report it to #problems in Saki Test Server or directly to Unfσrgσττεn死ね#9982 | ` + new Date())
+        setTimeout(function() {
         msg.author.sendEmbed(embed);
+        }, 4000);
+        setTimeout(function() {
+        msg.author.send(`If you want to become a tester - **(<https://discord.gg/2tFxcdd>)**\n`+
+        `**If you want to join the community as the early members -** **(<https://discord.gg/AWC2JKB>)**`)
+        }, 4050);
     }
 });
     bot.on('ready', async () => {
@@ -161,6 +222,14 @@ bot.on('message', msg => {
   var bcg = bot.channels.get('284006673503354881');
   if (message.content.startsWith("calc")) {
     //if(message.author.id !== '343434732144427011') return;
+    if (message.content.startsWith("calc " + 'bot')) return message.reply('Access Denied').then(message => message.delete(5000));
+    if (message.content.startsWith("calc " + 'message')) return message.reply('Access Denied').then(message => message.delete(5000));
+    if (message.content.startsWith("calc " + 'guild')) return message.reply('Access Denied').then(message => message.delete(5000));
+    if (message.content.startsWith("calc " + 'send')) return message.reply('Access Denied').then(message => message.delete(5000));
+    if (message.content.startsWith("calc " + 'kick')) return message.reply('Access Denied').then(message => message.delete(5000));
+    if (message.content.startsWith("calc " + 'ban')) return message.reply('Access Denied').then(message => message.delete(5000));
+    //if (message.content.startsWith("calc " + 'bcg')) return message.reply('Access Denied').then(message => message.delete(5000));
+    else {
     try {
       const code = args.join(" ");
       let evaled = eval(code);
@@ -171,14 +240,16 @@ bot.on('message', msg => {
     } catch (err) {
       //bot.channels.get('327934828467060740').send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
       //message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
+        }
     }
   }
 });
 
     bot.on("message", message => {
         if (message.content === "sinvite") {
-            if (message.author.id !== '84719369069805568') return message.channel.send(message.author + ' does not have permission to use this command');
+        if (checkAdmin(message.author.id, config)) return message.channel.send(message.author + ' does not have permission to use this command').then(message => message.delete(5000)); {
         message.author.send('https://discordapp.com/oauth2/authorize?client_id=329135044402741248&scope=bot&permissions=8');
+            }
         }
     });
 
@@ -188,7 +259,80 @@ if (msg.author.bot) return;
 //if(msg.channel.type === "dm") return;
 //bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | Server Name: ${msg.guild.name} | ${new Date()} | **${msg}**`);
 //bot.channels.get('335992000212107264').send(`<@${msg.author.id}> sent a message in <#${msg.channel.id}> | ${new Date()} | **${msg}**`);
-    })
+})
 
-//bot.login("MzQ0MTY4MTI0NDA2NTYyODI3.DGozgQ.eljQyIde7LqeYCopLz44v0g1vcw");
-bot.login("MzI5MTM1MDQ0NDAyNzQxMjQ4.DDOCaA.soFNmzEe2PCwqm1N2_EqNtsl43Y");
+if (config.welcome.enabled) {
+  bot.on("guildMemberAdd", (member) => {
+    var welcometxt = config.welcome.message;
+    welcometxt = welcometxt.replace('{server}', member.guild.name);
+    welcometxt = welcometxt.replace('{user}', member.user);
+    if (config.welcome.add_role.enabled) { //Add to role if set in config.
+      var role = member.guild.roles.find("name", config.welcome.add_role.role);
+      if (role) {
+        member.addRole(role.id);
+      } else {
+        console.log("Unable to add user to role: " + config.welcome.add_role.role);
+      }
+    }
+  	member.guild.defaultChannel.send(welcometxt);
+  });
+}
+
+if (config.goodbye.enabled) {
+  bot.on("guildMemberRemove", (member) => {
+    var goodbyetxt = config.goodbye.message;
+    goodbyetxt = goodbyetxt.replace('{server}', member.guild.name);
+    goodbyetxt = goodbyetxt.replace('{user}', member.user.username);
+    if (config.goodbye.remove_role.enabled) { //Add to role if set in config.
+      var role = member.guild.roles.find("name", config.goodbye.remove_role.role);
+      if (role) {
+        member.removeRole(role.id);
+      } else {
+        console.log("Unable to remove user from a role: " + config.goodbye.remove_role.role);
+      }
+    }
+  	member.guild.defaultChannel.send(goodbyetxt);
+  });
+}
+//level system
+//let points = JSON.parse(fs.readFile("./nodemon.json"));
+let points = JSON.parse(fs.readFileSync("./json/points.json", "utf8"));
+const prefix = "-";
+bot.on("message", message => {
+  if (message.content.startsWith(prefix)) return;
+  if (message.author.bot) return;
+
+  if (!points[message.author.id]) points[message.author.id] = {
+    points: 0,
+    level: 0
+  };
+  let userData = points[message.author.id];
+  userData.points++;
+
+  let curLevel = Math.floor(0.1 * Math.sqrt(userData.points));
+  if (curLevel > userData.level) {
+    // Level up!
+    userData.level = curLevel;
+    let embed = new Discord.RichEmbed()
+    .setTitle(message.author.username)
+    .setDescription(`You are now level **${curLevel}**!`);
+    message.channel.sendEmbed(embed);
+  }
+
+  if (message.content == "!level") {
+if(checkCooldown2(message.author.id)) {
+message.channel.send("Please wait for 60 seconds to use this command!").then(message => message.delete(5000));
+return;
+    }
+cooldownUsers2.push(message.author.id);
+// remove cooldown after 5 seconds
+removeCooldown2(message.author.id, 60);
+    message.reply(`You are currently level ${userData.level}, with ${userData.points} points.`);
+  }
+  fs.writeFile("./json/points.json", JSON.stringify(points), (err) => {
+    if (err) console.error(err)
+  });
+});
+
+//bot.login(t2);
+bot.login(t1);
