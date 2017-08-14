@@ -1,13 +1,13 @@
 {
-    "token1": "MzI5MTM1MDQ0NDAyNzQxMjQ4.DDOCaA.soFNmzEe2PCwqm1N2_EqNtsl43Y",
-    "token2": "MzQ0MTY4MTI0NDA2NTYyODI3.DGozgQ.eljQyIde7LqeYCopLz44v0g1vcw",
+    "token1": "insert token",
+    "token2": "insert token",
     "prefix": "$",
-    "spel": "$help | v1.3",
-    "naam": "Saki",
-    "staat": "idle",
+    "spel": "game name",
+    "naam": "username",
+    "staat": "status",
   "admins": {
-    "343434732144427011": "DeParijs",
-    "84719369069805568": "Unfσrgσττεn死ね"
+    "<user id>": "optional username",
+    "<user id>": "optional username"
   },
     "welcome": {
       "enabled": true,
